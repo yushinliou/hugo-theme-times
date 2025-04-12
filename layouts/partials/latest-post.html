@@ -1,0 +1,39 @@
+{{ $pages := where site.RegularPages "Type" "posts" }}
+{{ $sorted := $pages.ByDate.Reverse }}
+{{ $first := index $sorted 0 }}
+
+<a href="{{ $first.RelPermalink }}" class="block">
+  <section class="latest-post w-full justify-center px-6 pt-6 pb-4 border-b transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
+    <div class="max-w-6xl w-full flex flex-col md:flex-row gap-2 md:gap-6 items-stretch">
+
+      <!-- Image Left -->
+      <div class="flex-shrink-0 w-full md:w-1/3 h-full">
+        <img src="{{ with $first.Params.cover }}{{ . }}{{ else }}/images/default.jpg{{ end }}"
+             alt="{{ $first.Title }}"
+             class="object-cover w-full h-auto rounded-none mb-4" />
+      </div>
+
+      <!-- Text Right -->
+      <div class="flex-1 pb-4">
+        <h2 class="text-sm uppercase text-gray-500 tracking-widest mb-2">
+          {{ with $first.Params.categories }}{{ index . 0 }}{{ else }}{{ T "uncategorized" | default "Top" }}{{ end }}
+        </h2>
+
+        <h3 class="text-3xl font-bold mb-2 font-serif hover:underline">
+          {{ $first.Title }}
+        </h3>
+
+        <p class="text-sm text-gray-500">{{ $first.Date.Format "2006-01-02" }}</p>
+
+        <div class="mt-4">
+          {{ $first.Summary }}
+        </div>
+
+        <span class="hover:underline text-gray-500 inline-block">
+          {{ T "readMore" | default " >> read more" }}
+        </span>
+      </div>
+    </div>
+  </section>
+</a>
+

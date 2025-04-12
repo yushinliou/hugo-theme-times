@@ -1,0 +1,9 @@
+{{ define "title" }}404 Not Found{{ end }}
+
+{{ define "main" }}
+<div class="h-[60vh] mx-auto px-4 flex flex-col justify-center items-center prose dark:prose-invert">
+  <h1>Sorry… you break the news.</h1>
+  <p>Click here to return to the headlines.</p>
+  <button class="btn my-5" @click="window.location.href = '{{ site.BaseURL }}'">{{ T "backToHome" }}</button>
+</div>
+{{ end }}

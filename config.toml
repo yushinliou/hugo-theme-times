@@ -1,0 +1,11 @@
+[module]
+[module.hugoVersion]
+min = "0.97.0"
+extended = true
+
+[params.favicon]
+  ico = "favicon/favicon.ico"
+  png = "favicon/favicon.png"
+  svg = "favicon/favicon.svg"
+  apple = "favicon/apple-touch-icon.png"
+  manifest = "favicon/site.webmanifest"

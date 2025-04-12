@@ -1,0 +1,121 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Alpine.js for menu -->
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<!-- font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+<!-- Playfair -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<!-- Noto Serif TC -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+
+<meta name="robots" content="noai, noimageai">
+<meta name="googlebot" content="noai, noimageai">
+<meta name="bingbot" content="noai, noimageai">
+<meta name="yandex" content="noai, noimageai">
+<meta name="baidu" content="noai, noimageai">
+<meta name="msnbot" content="noai, noimageai">
+<meta name="teoma" content="noai, noimageai">
+<meta name="slurp" content="noai, noimageai">
+<meta name="duckduckbot" content="noai, noimageai">
+<meta name="facebook" content="noai, noimageai">
+<meta name="twitter" content="noai, noimageai">
+<meta name="pinterest" content="noai, noimageai">
+<meta name="linkedin" content="noai, noimageai">
+<meta name="whatsapp" content="noai, noimageai">
+<meta name="telegram" content="noai, noimageai">
+<meta name="signal" content="noai, noimageai">
+<meta name="instagram" content="noai, noimageai">
+<meta name="tiktok" content="noai, noimageai">
+<meta name="snapchat" content="noai, noimageai">
+<meta name="youtube" content="noai, noimageai">
+<meta name="vimeo" content="noai, noimageai">
+<meta name="twitch" content="noai, noimageai">
+<meta name="spotify" content="noai, noimageai">
+<meta name="soundcloud" content="noai, noimageai">
+<meta name="apple" content="noai, noimageai">
+<meta name="android" content="noai, noimageai">
+<meta name="windows" content="noai, noimageai">
+<meta name="linux" content="noai, noimageai">
+<meta name="macos" content="noai, noimageai">
+<meta name="ios" content="noai, noimageai">
+
+<!-- <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Idler" />
+<link rel="manifest" href="/site.webmanifest" /> -->
+
+{{ with site.Params.favicon }}
+  {{ with .png }} <link rel="icon" type="image/png" href="{{ . | absURL }}" sizes="96x96" /> {{ end }}
+  {{ with .svg }} <link rel="icon" type="image/svg+xml" href="{{ . | absURL }}" /> {{ end }}
+  {{ with .ico }} <link rel="shortcut icon" href="{{ . | absURL }}" /> {{ end }}
+  {{ with .apple }} <link rel="apple-touch-icon" sizes="180x180" href="{{ . | absURL }}" /> {{ end }}
+  {{ with .manifest }} <link rel="manifest" href="{{ . | absURL }}" /> {{ end }}
+{{ end }}
+
+<link rel="canonical" href="{{ .Permalink }}" />
+
+{{ if eq .Type "posts" }}
+<!-- Page Author & Description -->
+<meta name="author" content="{{ if isset .Params "author" }}{{ .Params.author }}{{ else }}{{ site.Params.author }}{{ end }}" />
+<meta name="description" content="{{ (or .Description .Summary) | plainify }}" />
+
+<!-- Keywords -->
+{{- $keywords := slice }}
+{{- with .Keywords }}
+  {{- $keywords = . }}
+{{- else }}
+  {{- range .GetTerms "tags" }}
+    {{- $keywords = $keywords | append .Title }}
+  {{- else }}
+    {{- range $taxonomy, $_ := site.Taxonomies }}
+      {{- range $.GetTerms $taxonomy }}
+        {{- $keywords = $keywords | append .Title }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+<meta name="keywords" content="{{ delimit $keywords `,` }}">
+{{ else }}
+<!-- Site Author & Description -->
+<meta name="author" content="{{ site.Params.author }}" />
+<meta name="description" content="{{ site.Params.description | plainify }}" />
+{{ end }}
+
+<!-- Site Generator -->
+{{ hugo.Generator }}
+
+<!-- Open Graph -->
+{{ template "_internal/opengraph.html" . }}
+
+<!-- Twitter Cards -->
+{{ template "_internal/twitter_cards.html" . }}
+
+{{ $outputCss := resources.Get "css/output.css" }}
+{{ if hugo.IsProduction }}
+  {{ $outputCss = $outputCss | minify | fingerprint }}
+{{ end }}
+<link rel="stylesheet" href="{{ $outputCss.RelPermalink }}" />
+
+{{ if or site.Params.backgroundImage site.Params.backgroundImageDark }}
+<style>
+{{ if site.Params.backgroundImage }}
+#dream-global-bg {
+  background-image: url({{ site.Params.backgroundImage | relURL }});
+}
+{{ end }}
+
+{{ if site.Params.backgroundImageDark }}
+html.dark #dream-global-bg {
+  background-image: url({{ site.Params.backgroundImageDark | relURL }});
+}
+{{ end }}
+</style>
+{{ end }}

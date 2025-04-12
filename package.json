@@ -1,0 +1,24 @@
+{
+  "name": "hugo-theme-times",
+  "version": "1.0.0",
+  "description": "Newspaper style Hugo theme.",
+  "repository": "https://github.com/yushinliou/hugo-theme-times",
+  "author": "Yu Shin <vxh440@gmail.com> (https://focusidler.com)",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "css": "tailwindcss -i ./src/input.css -o ./assets/css/output.css",
+    "js": "babel src --out-dir assets --presets=@babel/preset-env --no-comments",
+    "build": "npm run css && npm run js",
+    "watch": "conc \"npm:css -- -w\" \"npm:js -- -w\""
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.7",
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7", 
+    "@tailwindcss/typography": "^0.5.15",
+    "concurrently": "^9.1.2",
+    "daisyui": "^4.12.22",
+    "tailwindcss": "^3.4.17"
+  }
+}

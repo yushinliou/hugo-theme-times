@@ -1,0 +1,35 @@
+name = 'Times'
+license = 'MIT'
+licenselink = 'https://github.com/yushinliou/hugo-theme-times/LICENSE'
+description = 'A news paper style Hugo theme'
+
+homepage = 'https://github.com/yushinliou/hugo-theme-times'
+
+demosite = 'https://focusidler.com'
+
+tags = ['blog', 'news', 'journal', 'magazine', 'responsive', 'multilingual', 'tailwindcss', 'darkmode']
+features = [
+  "Minimal & Modern Design",
+  "Filter posts by categories and tags",
+  "Dark/light theme switch",
+  "Timeline archive view",
+  "Responsive",
+  "Favicon",
+  "Multilingual",
+  "Google Analytics",
+  "Disqus",
+  "Utterances",
+  "Syntax Highlighting",
+  "Decap CMS",
+  "Customizable",
+]
+
+[author]
+  name = 'Yu Shin Liou'
+  homepage = 'https://focusidler.com'
+
+[original]
+  author = "Yue Yang"
+  homepage = 'https://g1en.site'
+  repo = 'https://github.com/g1eny0ung'
+

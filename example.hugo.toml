@@ -1,0 +1,118 @@
+baseURL = "https://focusidler.com"
+defaultContentLanguage = "zh"
+title = "A focused idler"
+theme = "times"
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      autoHeadingID = true
+      autoHeadingIDType = "github"
+  [markup.highlight]
+    noClasses = false
+    style = "dracula"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  year = "year"
+
+[languages]
+  [languages.en]
+    languageName = 'English'
+    contentDir = "content/en"
+    weight = 1
+  [languages.zh]
+    languageName = '中文'
+    contentDir = "content/zh"
+    weight = 2
+
+[languages.en.params]
+  description = "We don't need to be busy, we need to be focused"
+  reading_speed = 212
+
+[languages.zh.params]
+  description = "We don't need to be busy, we need to be focused."
+  reading_speed = 500
+
+[languages.zh.menu]
+  [[languages.zh.menu.main]]
+    identifier = "about"
+    name = "關於"
+    url = "/about/"
+    weight = 1
+[languages.en.menu]
+  [[languages.en.menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+# [services]
+# [services.disqus]
+# shortname = ""
+# [services.googleAnalytics]
+# ID = ""
+
+[params]
+  description = "專心摸魚"
+  author = "A Focused Idler"
+  mainSections = ["posts"]
+  featuredPosts = 3
+  motto = "Don't be busy, be focus"
+  footerBottomText = "CC BY-NC-SA 4.0"
+  rss = true
+  email = "focusidler@gmail.com"
+  # Check more theme in https://daisyui.com/docs/themes/
+  lightTheme = "wireframe"
+  darkTheme = "black"
+  showTableOfContents = true
+  showSummaryCoverInPost = true
+  headerAvatar = "avatar/avatar-512x512.png"
+  headerTitle = "A FOCUSED IDLER"
+  showPrevNextPost = true
+  # byText = "Author"
+  # backgroundImage = "me/background.jpg"
+  # backgroundImageDark = ""
+  # footer
+  siteStartYear = 2024
+  hasCJKLanguage = true
+  
+# options
+# You can use https://favicon.io/favicon-generator/ to make sure the favicon works will on all browsers and devices.
+[params.favicon]
+  png = "favicon/favicon-96x96.png"
+  svg = "favicon/favicon.svg"
+  ico = "favicon/favicon.ico"
+  apple = "favicon/apple-touch-icon.png"
+  manifest = "favicon/site.webmanifest"
+
+  # Syntax highlighting
+  # customSyntaxHighlighting = true
+
+  # stickyNav = true
+  # reorderNavItems = ["search", "rss", "posts", "categories", "tags"]
+  # collapseNavItems = ["posts", "categories", "tags"]
+  # noDefaultSummaryCover = true
+
+  # imageZoomableInPost = true
+  # showPrevNextPost = true
+  # reorderShares = ["x", "facebook", "whatsapp"]
+
+  # [params.navItems]
+
+  # [params.twikoo]
+  # enabled = true
+  # envID = ""
+  # region = ""
+  # lang = ""
+
+  # [params.advanced]
+  # customCSS = ["css/custom.css"]
+  # customJS = []

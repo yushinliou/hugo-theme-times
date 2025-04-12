@@ -1,0 +1,36 @@
+note = "Nota"
+tip = "Consejo"
+important = "Importante"
+warning = "Advertencia"
+caution = "Precaución"
+
+home = "Inicio"
+backToHome = "Volver al inicio"
+flip = "¡Dar la vuelta!"
+about = "Acerca de"
+search = "Buscar"
+prevPage = "Página anterior"
+nextPage = "Página siguiente"
+
+archives = "Archivos"
+allCategories = "Categorías"
+allTags = "Etiquetas"
+lastest = "Últimos"
+
+minuteRead = "minutos de lectura"
+updatedAt = "Actualizado en"
+socialLinks = "Enlaces sociales"
+readMore = ">> leer más"
+post = "Publicación"
+
+[article]
+one = "1 artículo"
+other = "{{ .Count }} artículos"
+
+[category]
+one = "1 categoría"
+other = "{{ .Count }} categorías"
+
+[tag]
+one = "1 etiqueta"
+other = "{{ .Count }} etiquetas"

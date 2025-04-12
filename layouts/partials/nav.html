@@ -1,0 +1,77 @@
+<header class="border-b">
+  <!-- layer1. motto + language switcher -->
+  <div class="flex justify-between items-center px-4 py-2 border-b">
+    
+  <!-- language switcher -->
+  {{ $translations := .AllTranslations }}
+  {{ $count := len $translations }}
+
+  {{ if gt $count 2 }}
+    <!-- Dropdown-style switcher -->
+    <div class="relative group inline-block border px-4 py-2 hover:shadow-[2px_2px_0_0_black] dark:hover:shadow-[2px_2px_0_0_white]">
+      <button class="text-sm font-semibold cursor-pointer flex items-center gap-1">
+        {{ .Site.Language.LanguageName }}
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </button>
+      <div class="absolute hidden group-hover:block bg-white dark:bg-black border mt-1 z-10 min-w-full text-sm text-left shadow-md">
+        {{ range $translations }}
+          <a href="{{ .Permalink }}"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 {{ if eq $.Lang .Lang }}font-bold{{ end }}">
+            {{ .Language.LanguageName }}
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  {{ else }}
+    <!-- Inline-style switcher -->
+    <div class="flex gap-4 border px-4 py-2 hover:shadow-[2px_2px_0_0_black] dark:hover:shadow-[2px_2px_0_0_white]">
+      {{ range $translations }}
+        <a href="{{ .Permalink }}" class="text-sm font-semibold {{ if eq $.Lang .Lang }}underline{{ end }}">
+          {{ .Language.LanguageName }}
+        </a>
+      {{ end }}
+    </div>
+  {{ end }}
+
+    
+    <!-- motto -->
+    {{ if site.Params.motto }}
+    <div class="text-sm font-semibold">
+      {{ site.Params.motto }}
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- 2ed layer：avatar + headerTitle -->
+  <div class="flex justify-center items-center w-full gap-3 py-2 border-b">
+    <div class="avatar items-center flex p-2 justify-center align-center">
+      <div class="w-12 h-12 rounded-full overflow-hidden">
+        <a href="{{ "/about/me" | relLangURL }}" class="hover:opacity-90 transition">
+        <img src="{{ site.Params.headerAvatar | relURL }}" alt="{{ site.Params.headerTitle }}" class="block w-full h-full object-cover"/>
+        </a>
+      </div>
+    </div>
+    {{ if site.Params.headerTitle }}
+    <div class="text-5xl font-semibold font-playfair items-center flex justify-center uppercase">
+      <a href="{{ site.BaseURL }}" class="hover:opacity-90 transition">
+      {{ site.Params.headerTitle }}
+      </a>
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- third layer：menu -->
+  <nav class="flex flex-col items-center gap-4 font-semibold font-merriweather">
+    <div class="flex gap-4">
+    <!-- Nav Menu -->
+    <div class="flex gap-6">
+      {{ $navItems := slice "rss" "posts" "categories" "tags" }}
+      {{ if site.Params.reorderNavItems }}
+        {{ $navItems = site.Params.reorderNavItems }}
+      {{ end }}
+      {{ range $navItems }}
+        {{ partial "renderNavItem.html" . }}
+      {{ end }}
+    </div>
+  </nav>
+</header>

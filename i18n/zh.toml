@@ -1,0 +1,36 @@
+note = "注意"
+tip = "提示"
+important = "重要"
+warning = "警告"
+caution = "小心"
+
+home = "首頁"
+backToHome = "返回首頁"
+flip = "翻轉一下！"
+about = "關於"
+search = "搜尋"
+prevPage = "上一頁"
+nextPage = "下一頁"
+
+archives = "封存"
+allCategories = "分類"
+allTags = "標籤"
+lastest = "最新"
+
+minuteRead = "分鐘閱讀"
+updatedAt = "更新於"
+socialLinks = "社群連結"
+readMore = ">> read more"
+post = "文章"
+
+[article]
+one = "1篇文章"
+other = "{{ .Count }}篇文章"
+
+[category]
+one = "1分類"
+other = "{{ .Count }}分類"
+
+[tag]
+one = "1標籤"
+other = "{{ .Count }}標籤"

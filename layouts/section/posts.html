@@ -1,0 +1,50 @@
+{{ define "title" }}
+{{- .Title -}}
+{{ $title := (strings.FirstUpper .Data.Plural) }}
+{{ end }}
+
+{{ define "main" }}
+<div class="w-full flex justify-center mt-8 mb-8 sm:px-6 lg:px-8 text-gray-800 bg-base-100 dark:bg-base-300">
+  <div class="max-w-4xl px-6 lg:px-8 mx-2 sm:mx-6 md:mx-8">
+    <!-- title -->
+    <div class="mt-6 mb-10">
+      <h1 class="text-4xl font-bold tracking-wide leading-tight">
+        {{ T "post" }}
+      </h1>
+      {{ if .Content }}
+      <p class="mt-2 text-base text-gray-600">{{ .Content }}</p>
+      {{ end }}
+    </div>
+
+    <!-- group year & month -->
+    {{ $groupLayout := default "2006.01" .Params.groupLayout }}
+    {{ range .Pages.GroupByDate $groupLayout }}
+    <section class="mb-12">
+      <h2 class="text-xl font-serif border-l-4 border-gray-400 pl-4 mb-4">{{ .Key }}</h2>
+
+      <ul class="space-y-2 ml-2">
+        {{ range .Pages }}
+        <li class="relative pl-4 dark:before:bg-gray-400 before:rounded-full">
+          <a href="{{ .RelPermalink }}" class="hover:underline text-base-content">
+            <span class="text-sm text-gray-500 mr-2">{{ .Date.Format "Jan 2" }}</span>
+            {{ .Title }}
+          </a>
+      
+          {{ with .Params.categories }}
+          <!-- <div class="text-sm text-gray-500 dark:text-gray-300 mt-1">
+            {{ range $index, $cat := . }}
+              {{ if $index }}, {{ end }}
+              <a href="{{ "/categories/" | relLangURL }}{{ $cat | urlize }}" class="hover:underline">
+                {{ $cat }}
+              </a>
+            {{ end }}
+          </div> -->
+          {{ end }}
+        </li>
+        {{ end }}
+      </ul>
+    </section>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

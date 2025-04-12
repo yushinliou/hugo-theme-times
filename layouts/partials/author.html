@@ -1,0 +1,24 @@
+<div class="flex items-center gap-2">
+  {{ if and .Params.avatar (not (eq .template "single")) }}
+  <div class="w-6 h-auto rounded-full overflow-hidden">
+    <img src="{{ .Params.avatar }}" alt="{{ .Params.author }}" 
+         class="block w-full h-full object-cover" />
+  </div>
+  {{ else }}
+  <span>{{ print (default "By" site.Params.byText) " " }} </span>
+  {{ end }}
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  {{ if .Params.author }}
+    {{ if and .Params.authorlink (eq .template "single") }}
+      <a itemprop="url" href="{{ .Params.authorlink }}" target="_blank">
+        <span itemprop="name">{{ .Params.author }}</span>
+      </a>
+    {{ else }}
+      <span itemprop="name">{{ .Params.author }}</span>
+    {{ end }}
+  {{ else }}
+    <span itemprop="name">{{ site.Params.author }}</span>
+  {{ end }}
+  </span>
+</div>
