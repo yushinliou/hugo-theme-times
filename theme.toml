@@ -1,6 +1,6 @@
 name = 'Times'
 license = 'MIT'
-licenselink = 'https://github.com/yushinliou/hugo-theme-times/LICENSE'
+licenselink = 'https://github.com/yushinliou/hugo-theme-times/blob/main/LICENSE'
 description = 'A news paper style Hugo theme'
 
 homepage = 'https://github.com/yushinliou/hugo-theme-times'
