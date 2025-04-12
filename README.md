@@ -2,7 +2,7 @@
 
 **Times** is a newspaper style hugo theme. It is clean, responsive and support multilangual.
 
-![alt](https://github.com/yushinliou/hugo-theme-times/blob/main/imgaes/screenshot.png)
+![alt](https://github.com/yushinliou/hugo-theme-times/blob/main/images/screenshot.png)
 
 > Check this [post](https://focusidler.com/en/posts/hugo/) if you don't know what is hugo and why you should use it for your site.
 
