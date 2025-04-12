@@ -46,6 +46,8 @@ hugo server
 
 ## ⚙️ Configuration Example
 
+Check `example.hugo.toml`
+
 ```toml
 baseURL = "https://yourdomain.com"
 defaultContentLanguage = "en"
@@ -62,7 +64,7 @@ theme = "times"
   contentDir = "content/en"
 
 [params]
-  description = "專心摸魚"
+  description = "Be a focused idler"
   author = "Your Name"
   mainSections = ["posts"]
   featuredPosts = 3
@@ -79,7 +81,9 @@ theme = "times"
 
 ---
 
-## 🖼️ Cover Images
+## 🖼️ Images
+
+### Cover
 
 Each post can optionally include a cover image for summary display.  
 To add a cover, use the `cover` param in your front matter:
@@ -88,7 +92,11 @@ To add a cover, use the `cover` param in your front matter:
 cover = "images/your-cover.jpg"
 ```
 
-Covers are optional, but adding them greatly improves visual aesthetics on the homepage and summaries.
+Covers are optional, but adding them will make your homepage looks great!
+
+### Avatar
+
+It is recommended to use a 512X512 png image. Be careful if your avatar has a transparent background, it may blend in with the background in dark mode.
 
 ## 🔖 Favicon Setup
 
