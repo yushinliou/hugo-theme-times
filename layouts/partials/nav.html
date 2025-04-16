@@ -24,11 +24,11 @@
     </div>
   {{ else }}
     <!-- Inline-style switcher -->
-    <div class="flex gap-4 border px-4 py-2 hover:shadow-[2px_2px_0_0_black] dark:hover:shadow-[2px_2px_0_0_white]">
-      {{ range $translations }}
-        <a href="{{ .Permalink }}" class="text-sm font-semibold {{ if eq $.Lang .Lang }}underline{{ end }}">
-          {{ .Language.LanguageName }}
-        </a>
+    <div class="flex gap-4 border p-2 transition relative px-4 py-2 hover:shadow-[2px_2px_0_0_black] dark:hover:shadow-[2px_2px_0_0_white]">
+      {{ range .Page.Translations }}
+      <a href="{{ .Permalink }}" class="text-sm font-semibold">
+        {{ .Language.LanguageName }}
+      </a>
       {{ end }}
     </div>
   {{ end }}
