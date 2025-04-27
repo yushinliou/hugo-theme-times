@@ -91,7 +91,7 @@ theme = "times"
   # backgroundImageDark = ""
   # footer
   siteStartYear = 2024
-  hasCJKLanguage = true
+  hasCJKLanguage = true 
   
 # options
 # You can use https://favicon.io/favicon-generator/ to make sure the favicon works will on all browsers and devices.

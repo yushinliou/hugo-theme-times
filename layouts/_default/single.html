@@ -74,7 +74,7 @@
         </div>
       </header>
 
-      <section id="dream-single-post-content" itemprop="articleBody" class="pb-20">
+      <section id="dream-single-post-content" itemprop="articleBody" class="pb-10">
         {{ if and .Params.cover site.Params.showSummaryCoverInPost}}
         <img src="{{ .Params.cover }}" alt="{{ with .Params.coverAlt }}{{ . }}{{ else }}{{ .Title }}{{ end }}" />
         {{ end }}
@@ -103,13 +103,18 @@
         </div>
       {{ end }}
       
+      {{ if site.Params.substackEmbedURL }}
+      <div class="substack flex justify-center">
+          {{ partialCached "substack.html" . }}
+      </div>
+      {{ end }}
 
-        {{ if fileExists "layouts/partials/adsense-post-bottom.html" }}
-          <div class="dream-adsense-post-bottom">
-            {{ partialCached "adsense-post-bottom.html" . }}
-          </div>
-        {{ end }}
-      </section>
+      {{ if fileExists "layouts/partials/adsense-post-bottom.html" }}
+        <div class="dream-adsense-post-bottom">
+          {{ partialCached "adsense-post-bottom.html" . }}
+        </div>
+      {{ end }}
+    </section>
 
       {{ if site.Params.showPrevNextPost }}
       
@@ -155,7 +160,9 @@
       {{ .TableOfContents }}
     {{ end }}
   </div>
+  
 </div>
+
 {{ end }}
 
 {{ define "js" }}
@@ -195,6 +202,7 @@
         margin: 24,
       })
     </script>
+    
   {{ end }}
 {{ end }}
 
