@@ -9,6 +9,7 @@ module.exports = {
         sans: ['Inter', 'sans-serif'],
         merriweather: ['"Merriweather"', 'Noto Serif TC', 'serif'],
         playfair: ['"Playfair Display"', 'serif'],
+        georgia: ['Georgia', 'Noto Serif TC','serif'],
       },
       typography: {
         DEFAULT: {

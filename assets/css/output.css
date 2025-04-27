@@ -1797,6 +1797,9 @@
   .text-left {
     text-align: left;
   }
+  .font-georgia {
+    font-family: Georgia, Noto Serif TC, serif;
+  }
   .font-merriweather {
     font-family: "Merriweather", Noto Serif TC, serif;
   }
