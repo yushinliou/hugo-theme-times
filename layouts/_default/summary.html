@@ -3,16 +3,24 @@
   <figure>
     {{ with .Resources.Get .Params.cover }}
     {{ if eq .MediaType.SubType "svg" }}
-      <img src="{{ .RelPermalink }}" alt="{{ .Title }}" />
+      <img src="{{ .RelPermalink }}" alt="{{ .Title }}" loading="lazy"/>
     {{ else }}
+      {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+      <picture>
+        <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+        <img src="{{ .RelPermalink }}" alt="{{ .Title }}" loading="lazy"/>
+      </picture>
+    {{ end }}
+      {{ else }}
+      {{ with resources.Get .Params.cover }}
       {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
       <picture>
         <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
         <img src="{{ .RelPermalink }}" alt="{{ .Title }}" />
       </picture>
-    {{ end }}
     {{ else }}
-    <img src="{{ .Params.cover }}" alt="{{ .Title }}" />
+      <img src="{{ .Params.cover }}" alt="{{ .Title }}" />
+    {{ end }}
     {{ end }}
   </figure>
   {{ else if not site.Params.noDefaultSummaryCover }}
@@ -20,7 +28,7 @@
     {{ with resources.Get (printf "images/default%d.jpg" (index (seq 4 | shuffle) 0)) }}
     {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
     <picture>
-      <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+      <source srcset="{{ $webp.RelPermalink }}" type="image/webp" loading="lazy"/>
       <img src="{{ .RelPermalink }}" alt="{{ .Title }}" />
     </picture>
     {{ end }}

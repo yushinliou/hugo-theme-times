@@ -8,9 +8,46 @@
 
       <!-- Image Left -->
       <div class="flex-shrink-0 w-full md:w-1/3 h-full">
-        <img src="{{ with $first.Params.cover }}{{ . }}{{ else }}/images/default.jpg{{ end }}"
-             alt="{{ $first.Title }}"
-             class="object-cover w-full h-auto rounded-none mb-4" />
+        {{ if $first.Params.cover }}
+          <figure>
+            {{ with $first.Resources.Get $first.Params.cover }}
+              {{ if eq .MediaType.SubType "svg" }}
+                <img src="{{ .RelPermalink }}" alt="{{ $first.Title }}" loading="lazy"
+                    class="object-cover w-full h-auto rounded-none mb-4" />
+              {{ else }}
+                {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+                <picture>
+                  <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+                  <img src="{{ .RelPermalink }}" alt="{{ $first.Title }}" loading="lazy"
+                      class="object-cover w-full h-auto rounded-none mb-4" />
+                </picture>
+              {{ end }}
+            {{ else }}
+              {{ with resources.Get $first.Params.cover }}
+                {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+                <picture>
+                  <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+                  <img src="{{ .RelPermalink }}" alt="{{ $first.Title }}"
+                      class="object-cover w-full h-auto rounded-none mb-4" loading="lazy" />
+                </picture>
+              {{ else }}
+                <img src="{{ $first.Params.cover }}" alt="{{ $first.Title }}"
+                    class="object-cover w-full h-auto rounded-none mb-4" loading="lazy" />
+              {{ end }}
+            {{ end }}
+          </figure>
+        {{ else }}
+          <figure>
+            {{ with resources.Get (printf "images/default%d.jpg" (index (seq 4 | shuffle) 0)) }}
+              {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+              <picture>
+                <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+                <img src="{{ .RelPermalink }}" alt="{{ $first.Title }}"
+                    class="object-cover w-full h-auto rounded-none mb-4" loading="lazy" />
+              </picture>
+            {{ end }}
+          </figure>
+        {{ end }}
       </div>
 
       <!-- Text Right -->

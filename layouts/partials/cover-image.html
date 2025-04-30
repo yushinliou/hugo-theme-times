@@ -1,0 +1,23 @@
+{{ $page := .page }}
+{{ $cover := .cover }}
+{{ $alt := .alt | default $page.Title }}
+
+{{ with .Resources.Get $cover }}
+  {{ if eq .MediaType.SubType "svg" }}
+    <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" class="{{ .class }}" />
+  {{ else }}
+    {{ $webp := .Resize "600x webp" }}
+    <picture>
+      <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+      <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" class="{{ .class }}" />
+    </picture>
+  {{ end }}
+{{ else }}
+  {{ with .Resources.Get "/images/default.jpg" }}
+    {{ $webp := .Resize "600x webp" }}
+    <picture>
+      <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+      <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" class="{{ .class }}" />
+    </picture>
+  {{ end }}
+{{ end }}
