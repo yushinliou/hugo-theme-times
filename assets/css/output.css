@@ -2088,11 +2088,6 @@
       max-height: calc(1/4 * 100%);
     }
   }
-  .sm\:max-h-\[10vh\] {
-    @media (width >= 40rem) {
-      max-height: 10vh;
-    }
-  }
   .sm\:px-1 {
     @media (width >= 40rem) {
       padding-inline: calc(var(--spacing) * 1);
@@ -2124,6 +2119,11 @@
           width: calc(0.25rem * 0.5);
         }
       }
+    }
+  }
+  .md\:max-h-1\/4 {
+    @media (width >= 48rem) {
+      max-height: calc(1/4 * 100%);
     }
   }
   .md\:w-1\/2 {

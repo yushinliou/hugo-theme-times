@@ -14,32 +14,32 @@
             {{ with $first.Resources.Get $first.Params.cover }}
               {{ if eq .MediaType.SubType "svg" }}
                 <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                    class="object-cover w-full h-auto rounded-none mb-4 sm:max-h-1/4"
+                    class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
                     width="{{ .Width }}" height="{{ .Height }}"
                     />
               {{ else }}
-                {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+                {{ $webp := .Resize "744x webp" }}
                 <picture>
                   <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
                   <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                      class="object-cover w-full h-auto rounded-none mb-4 sm:max-h-1/4" 
+                      class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4" 
                       width="{{ .Width }}" height="{{ .Height }}"
                       />
                 </picture>
               {{ end }}
             {{ else }}
               {{ with resources.Get $first.Params.cover }}
-                {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+                {{ $webp := .Resize "744x webp" }}
                 <picture>
                   <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
                   <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                      class="object-cover w-full h-auto rounded-none mb-4 sm:max-h-1/4"
+                      class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
                       width="{{ .Width }}" height="{{ .Height }}"
                       />
                 </picture>
               {{ else }}
                 <img src="{{ $first.Params.cover }}" alt="{{ $alt }}"
-                    class="object-cover w-full h-auto rounded-none mb-4 sm:max-h-1/4"
+                    class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
                     width="{{ .Width }}" height="{{ .Height }}"
                     />
               {{ end }}
@@ -48,11 +48,11 @@
         {{ else }}
           <figure>
             {{ with resources.Get (printf "images/default%d.jpg" (index (seq 4 | shuffle) 0)) }}
-              {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+              {{ $webp := .Resize "744x webp" }}
               <picture>
                 <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
                 <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                    class="object-cover w-full h-auto rounded-none mb-4 sm:max-h-[10vh]"
+                class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
                     width="{{ .Width }}" height="{{ .Height }}"
                     />
               </picture>

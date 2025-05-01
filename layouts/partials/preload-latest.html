@@ -1,0 +1,7 @@
+{{ $pages := where site.RegularPages "Type" "posts" }}
+{{ $sorted := $pages.ByDate.Reverse }}
+{{ $first := index $sorted 0 }}
+
+{{ with $first.Resources.Get $first.Params.cover }}
+  <link rel="preload" as="image" href="{{ .RelPermalink }}" type="image/webp">
+{{ end }}

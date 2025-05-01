@@ -3,7 +3,7 @@
 <!-- Alpine.js for menu -->
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<!-- 建立預連線，避免 DNS、TLS 延遲 -->
+<!-- Prevent DNS、TLS late -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -55,12 +55,6 @@
 <meta name="macos" content="noai, noimageai">
 <meta name="ios" content="noai, noimageai">
 
-<!-- <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="Idler" />
-<link rel="manifest" href="/site.webmanifest" /> -->
 
 {{ with site.Params.favicon }}
   {{ with .png }} <link rel="icon" type="image/png" href="{{ . | absURL }}" sizes="96x96" /> {{ end }}
