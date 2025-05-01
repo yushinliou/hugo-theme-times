@@ -5,6 +5,7 @@ lastmod: {{ .Date }}
 author: "A focused Idler"
 avatar: "/avatar/avatar-512x512.png"
 cover: "/cover/cover-meme.png"
+# coverAlt:
 images:
   - "/cover/cover-meme.png"
 categories:

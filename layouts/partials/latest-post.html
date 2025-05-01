@@ -1,6 +1,7 @@
 {{ $pages := where site.RegularPages "Type" "posts" }}
 {{ $sorted := $pages.ByDate.Reverse }}
 {{ $first := index $sorted 0 }}
+{{ $alt := or $first.Params.coverAlt $first.Title }}
 
 <a href="{{ $first.RelPermalink }}" class="block">
   <section class="latest-post w-full justify-center px-6 pt-6 pb-4 border-b transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
@@ -12,14 +13,18 @@
           <figure>
             {{ with $first.Resources.Get $first.Params.cover }}
               {{ if eq .MediaType.SubType "svg" }}
-                <img src="{{ .RelPermalink }}" alt="{{ $first.Title }}" loading="lazy"
-                    class="object-cover w-full h-auto rounded-none mb-4" />
+                <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                    class="object-cover w-full h-auto rounded-none mb-4" 
+                    width="{{ .Width }}" height="{{ .Height }}"
+                    />
               {{ else }}
                 {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
                 <picture>
                   <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
-                  <img src="{{ .RelPermalink }}" alt="{{ $first.Title }}" loading="lazy"
-                      class="object-cover w-full h-auto rounded-none mb-4" />
+                  <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                      class="object-cover w-full h-auto rounded-none mb-4" 
+                      width="{{ .Width }}" height="{{ .Height }}"
+                      />
                 </picture>
               {{ end }}
             {{ else }}
@@ -27,12 +32,16 @@
                 {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
                 <picture>
                   <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
-                  <img src="{{ .RelPermalink }}" alt="{{ $first.Title }}"
-                      class="object-cover w-full h-auto rounded-none mb-4" loading="lazy" />
+                  <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                      class="object-cover w-full h-auto rounded-none mb-4"
+                      width="{{ .Width }}" height="{{ .Height }}"
+                      />
                 </picture>
               {{ else }}
-                <img src="{{ $first.Params.cover }}" alt="{{ $first.Title }}"
-                    class="object-cover w-full h-auto rounded-none mb-4" loading="lazy" />
+                <img src="{{ $first.Params.cover }}" alt="{{ $alt }}"
+                    class="object-cover w-full h-auto rounded-none mb-4"
+                    width="{{ .Width }}" height="{{ .Height }}"
+                    />
               {{ end }}
             {{ end }}
           </figure>
@@ -42,8 +51,10 @@
               {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
               <picture>
                 <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
-                <img src="{{ .RelPermalink }}" alt="{{ $first.Title }}"
-                    class="object-cover w-full h-auto rounded-none mb-4" loading="lazy" />
+                <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                    class="object-cover w-full h-auto rounded-none mb-4"
+                    width="{{ .Width }}" height="{{ .Height }}"
+                    />
               </picture>
             {{ end }}
           </figure>

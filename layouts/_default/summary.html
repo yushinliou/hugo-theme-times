@@ -1,14 +1,18 @@
 <a class="card card-compact bg-base-100 border-b-1 border-gray-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer rounded-none" href="{{ .RelPermalink }}">
   {{ if .Params.cover }}
+  {{ $alt := or .Params.coverAlt .Title }}
+  
   <figure>
     {{ with .Resources.Get .Params.cover }}
     {{ if eq .MediaType.SubType "svg" }}
-      <img src="{{ .RelPermalink }}" alt="{{ .Title }}" loading="lazy"/>
+      <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy"/>
     {{ else }}
       {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
       <picture>
         <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
-        <img src="{{ .RelPermalink }}" alt="{{ .Title }}" loading="lazy"/>
+        <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy"
+        width="{{ .Width }}" height="{{ .Height }}"
+        />
       </picture>
     {{ end }}
       {{ else }}
@@ -16,10 +20,12 @@
       {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
       <picture>
         <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
-        <img src="{{ .RelPermalink }}" alt="{{ .Title }}" />
+        <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+        width="{{ .Width }}" height="{{ .Height }}"
+        />
       </picture>
     {{ else }}
-      <img src="{{ .Params.cover }}" alt="{{ .Title }}" />
+      <img src="{{ .Params.cover }}" alt="{{ $alt }}" />
     {{ end }}
     {{ end }}
   </figure>
@@ -28,8 +34,8 @@
     {{ with resources.Get (printf "images/default%d.jpg" (index (seq 4 | shuffle) 0)) }}
     {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
     <picture>
-      <source srcset="{{ $webp.RelPermalink }}" type="image/webp" loading="lazy"/>
-      <img src="{{ .RelPermalink }}" alt="{{ .Title }}" />
+      <source srcset="{{ $webp.RelPermalink }}" type="image/webp" loading="lazy" width="{{ .Width }}" height="{{ .Height }}"/>
+      <img src="{{ .RelPermalink }}" alt="{{ $alt }}" />
     </picture>
     {{ end }}
   </figure>

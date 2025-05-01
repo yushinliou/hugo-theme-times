@@ -3,13 +3,13 @@
   <a href="{{ .paginator.Prev.URL }}" title="{{ T "prevPage" }}"
      class="px-4 py-2 rounded-full text-lg hover:underline hover:shadow-lg transition-all duration-200 flex items-center justify-center
             bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
-    <ion-icon name="chevron-back" class="text-2xl"></ion-icon>
+    <ion-icon name="chevron-back" class="text-2xl" alt="Previous Page"></ion-icon>
   </a>
   {{ else }}
   <button disabled
      class="px-4 py-2 rounded-full text-lg bg-gray-200 text-gray-400 flex items-center justify-center
             dark:bg-gray-700 dark:text-gray-500">
-    <ion-icon name="chevron-back" class="text-2xl"></ion-icon>
+    <ion-icon name="chevron-back" class="text-2xl" alt="Previous Page"></ion-icon>
   </button>
   {{ end }}
 
@@ -17,13 +17,13 @@
   <a href="{{ .paginator.Next.URL }}" title="{{ T "nextPage" }}"
      class="px-4 py-2 rounded-full text-lg hover:underline hover:shadow-lg transition-all duration-200 flex items-center justify-center
             bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
-    <ion-icon name="chevron-forward" class="text-2xl"></ion-icon>
+    <ion-icon name="chevron-forward" class="text-2xl" alt="Next Page"></ion-icon>
   </a>
   {{ else }}
   <button disabled
      class="px-4 py-2 rounded-full text-lg bg-gray-200 text-gray-400 flex items-center justify-center
             dark:bg-gray-700 dark:text-gray-500">
-    <ion-icon name="chevron-forward" class="text-2xl"></ion-icon>
+    <ion-icon name="chevron-forward" class="text-2xl" alt="Next Page"></ion-icon>
   </button>
   {{ end }}
 </div>
