@@ -160,6 +160,10 @@ Check [Hogo doc](https://gohugo.io/content-management/organization/) for more de
 
 Taxonomies such as `categories`, `tags`, and `year` will be generated automatically.
 
+## Cover image
+
+Cover image is optional, but highly recommended for better visualization. Landscape image is recommeded.
+
 ## 🛠 (Optional) Customize & Build CSS
 
 If you want to customize the CSS style of this theme, you will need [Tailwind CSS and it's plugins](https://tailwindcss.com).

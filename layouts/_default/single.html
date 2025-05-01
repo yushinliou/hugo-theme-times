@@ -76,7 +76,7 @@
 
       <section id="dream-single-post-content" itemprop="articleBody" class="pb-10">
         {{ if and .Params.cover site.Params.showSummaryCoverInPost}}
-        <img src="{{ .Params.cover }}" alt="{{ with .Params.coverAlt }}{{ . }}{{ else }}{{ .Title }}{{ end }}" />
+        <img src="{{ .Params.cover }}" alt="{{ with .Params.coverAlt }}{{ . }}{{ else }}{{ .Title }}{{ end }}" class="max-w-full max-h-[50vh] mx-auto"/>
         {{ end }}
 
         {{ .Content | emojify }}

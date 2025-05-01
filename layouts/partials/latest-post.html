@@ -14,7 +14,7 @@
             {{ with $first.Resources.Get $first.Params.cover }}
               {{ if eq .MediaType.SubType "svg" }}
                 <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                    class="object-cover w-full h-auto rounded-none mb-4" 
+                    class="object-cover w-full h-auto rounded-none mb-4 sm:max-h-1/4"
                     width="{{ .Width }}" height="{{ .Height }}"
                     />
               {{ else }}
@@ -22,7 +22,7 @@
                 <picture>
                   <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
                   <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                      class="object-cover w-full h-auto rounded-none mb-4" 
+                      class="object-cover w-full h-auto rounded-none mb-4 sm:max-h-1/4" 
                       width="{{ .Width }}" height="{{ .Height }}"
                       />
                 </picture>
@@ -33,13 +33,13 @@
                 <picture>
                   <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
                   <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                      class="object-cover w-full h-auto rounded-none mb-4"
+                      class="object-cover w-full h-auto rounded-none mb-4 sm:max-h-1/4"
                       width="{{ .Width }}" height="{{ .Height }}"
                       />
                 </picture>
               {{ else }}
                 <img src="{{ $first.Params.cover }}" alt="{{ $alt }}"
-                    class="object-cover w-full h-auto rounded-none mb-4"
+                    class="object-cover w-full h-auto rounded-none mb-4 sm:max-h-1/4"
                     width="{{ .Width }}" height="{{ .Height }}"
                     />
               {{ end }}
@@ -52,7 +52,7 @@
               <picture>
                 <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
                 <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                    class="object-cover w-full h-auto rounded-none mb-4"
+                    class="object-cover w-full h-auto rounded-none mb-4 sm:max-h-[10vh]"
                     width="{{ .Width }}" height="{{ .Height }}"
                     />
               </picture>
@@ -84,4 +84,3 @@
     </div>
   </section>
 </a>
-
