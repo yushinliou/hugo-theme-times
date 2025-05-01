@@ -14,6 +14,8 @@
             {{ with $first.Resources.Get $first.Params.cover }}
               {{ if eq .MediaType.SubType "svg" }}
                 <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                    fetchpriority="high"
+                    decoding="async"
                     class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
                     width="{{ .Width }}" height="{{ .Height }}"
                     />
@@ -22,6 +24,8 @@
                 <picture>
                   <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
                   <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                      fetchpriority="high"
+                      decoding="async"
                       class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4" 
                       width="{{ .Width }}" height="{{ .Height }}"
                       />
@@ -33,12 +37,16 @@
                 <picture>
                   <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
                   <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                      fetchpriority="high"
+                      decoding="async"
                       class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
                       width="{{ .Width }}" height="{{ .Height }}"
                       />
                 </picture>
               {{ else }}
                 <img src="{{ $first.Params.cover }}" alt="{{ $alt }}"
+                    fetchpriority="high"
+                    decoding="async"
                     class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
                     width="{{ .Width }}" height="{{ .Height }}"
                     />
