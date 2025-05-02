@@ -1,55 +1,73 @@
-<a class="card card-compact bg-base-100 border-b-1 border-gray-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer rounded-none" href="{{ .RelPermalink }}">
-  {{ if .Params.cover }}
-  {{ $alt := or .Params.coverAlt .Title }}
-  
+<a
+  class="card card-compact bg-base-100 border-b-1 border-gray-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer rounded-none"
+  href="{{ .RelPermalink }}"
+>
   <figure>
-    {{ with .Resources.Get .Params.cover }}
-    {{ if eq .MediaType.SubType "svg" }}
-      <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy"/>
-    {{ else }}
-      {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
-      <picture>
-        <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
-        <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy"
-        width="{{ .Width }}" height="{{ .Height }}"
-        />
-      </picture>
-    {{ end }}
+    {{ $alt := or .Params.coverAlt .Title }}
+    {{ if .Params.cover }}
+      {{ with .Resources.Get .Params.cover }}
+        {{ if eq .MediaType.SubType "svg" }}
+          <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" />
+        {{ else }}
+          {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+          <picture>
+            <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+            <img
+              src="{{ .RelPermalink }}"
+              alt="{{ $alt }}"
+              loading="lazy"
+              width="{{ .Width }}"
+              height="{{ .Height }}"
+            />
+          </picture>
+        {{ end }}
       {{ else }}
-      {{ with resources.Get .Params.cover }}
-      {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
-      <picture>
-        <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
-        <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-        width="{{ .Width }}" height="{{ .Height }}"
-        />
-      </picture>
-    {{ else }}
-      <img src="{{ .Params.cover }}" alt="{{ $alt }}" />
-    {{ end }}
+        {{ with resources.Get .Params.cover }}
+          {{ if eq .MediaType.SubType "svg" }}
+            <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" />
+          {{ else }}
+            {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+            <picture>
+              <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+              <img
+                src="{{ .RelPermalink }}"
+                alt="{{ $alt }}"
+                loading="lazy"
+                width="{{ .Width }}"
+                height="{{ .Height }}"
+              />
+            </picture>
+          {{ end }}
+        {{ else }}
+          <img src="{{ .Params.cover }}" alt="{{ $alt }}" loading="lazy" />
+        {{ end }}
+      {{ end }}
+    {{ else if not site.Params.noDefaultSummaryCover }}
+      {{ with resources.Get (printf "images/default%d.jpg" (index (seq 4 | shuffle) 0)) }}
+        {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+        <picture>
+          <source
+            srcset="{{ $webp.RelPermalink }}"
+            type="image/webp"
+            loading="lazy"
+            width="{{ .Width }}"
+            height="{{ .Height }}"
+          />
+          <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" />
+        </picture>
+      {{ end }}
     {{ end }}
   </figure>
-  {{ else if not site.Params.noDefaultSummaryCover }}
-  <figure>
-    {{ with resources.Get (printf "images/default%d.jpg" (index (seq 4 | shuffle) 0)) }}
-    {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
-    <picture>
-      <source srcset="{{ $webp.RelPermalink }}" type="image/webp" loading="lazy" width="{{ .Width }}" height="{{ .Height }}"/>
-      <img src="{{ .RelPermalink }}" alt="{{ $alt }}" />
-    </picture>
-    {{ end }}
-  </figure>
-  {{ end }}
 
   <div class="card-body">
     <h2 class="card-title font-merriweather font-bold">{{ .Title }}</h2>
 
     <p class="date text-base-content/60">
-    {{ if site.Params.Experimental.jsDate }}
-      <span data-format="luxon">{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}</span>
-    {{ else }}
-      {{ .Date | time.Format "Monday, Jan 2, 2006" }}
-    {{ end }}
+      {{ if site.Params.Experimental.jsDate }}
+        <span data-format="luxon">{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}</span>
+      {{ else }}
+        {{ .Date | time.Format "Monday, Jan 2, 2006" }}
+      {{ end }}
     </p>
 
     {{ or .Description (.Summary | emojify | safeHTML) }}

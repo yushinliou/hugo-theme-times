@@ -11,28 +11,27 @@
       {{ if $first.Params.cover }}
 
       <!-- Text Right (with image) -->
-      <div class="latest-post-text flex-1 pb-4 flex flex-col gap-2 lg:gap-4">
-        <h2 class="text-sm uppercase text-gray-500 tracking-widest mt-1">
+      <div class="latest-post-text flex-1 pb-4 flex flex-col">
+        <h2 class="text-sm uppercase text-gray-500 tracking-widest mt-1 mb-2">
           {{ with $first.Params.categories }}{{ index . 0 }}{{ else }}{{ T "uncategorized" | default "Top" }}{{ end }}
         </h2>
 
-        <h3 class="text-3xl font-bold font-serif hover:underline">
+        <h3 class="text-3xl font-bold font-serif hover:underline mb-2">
           {{ $first.Title }}
         </h3>
 
-        <p class="text-sm text-gray-500">{{ $first.Date.Format "2006-01-02" }}</p>
+        <p class="text-sm text-gray-500 mb-2">{{ $first.Date.Format "2006-01-02" }}</p>
 
         <div class="">
           {{ $first.Summary }}
         </div>
 
         <!-- read time -->
-        <div class="flex items-center mt-2">
-          <ion-icon name="time" class="mr-1"></ion-icon>
-          {{ $readingTime := div (float .WordCount) .Site.Params.reading_speed }}
-          {{ $readingTime := math.Ceil $readingTime }}
-          <span>{{ $readingTime }} {{ T "minuteRead" }}</span>
-        </div>
+        <div class="mb-2 hover:underline text-gray-500">
+          <a href="{{ $first.RelPermalink }}" class="mt-2"></a>
+          {{ T "readMore" | default "Read More" }}
+          </a>
+      </div>
       </div>
       <!-- Image Left -->
       <div class="latest-post-cover flex-shrink-0 w-full md:w-1/3 h-full"> 
@@ -43,7 +42,6 @@
                   fetchpriority="high"
                   decoding="async"
                   class="object-cover w-full h-auto rounded-none mb-4 aspect-[4/3]"
-                  width="{{ .Width }}" height="{{ .Height }}"
                   />
             {{ else }}
               {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
@@ -59,6 +57,13 @@
             {{ end }}
           {{ else }}
             {{ with resources.Get $first.Params.cover }}
+              {{ if eq .MediaType.SubType "svg" }}
+                <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                    fetchpriority="high"
+                    decoding="async"
+                    class="object-cover w-full h-auto rounded-none mb-4 aspect-[4/3]"
+                    />
+              {{ else }}
               {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
               <picture>
                 <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
@@ -69,12 +74,13 @@
                     width="{{ .Width }}" height="{{ .Height }}"
                     />
               </picture>
+              {{ end }}
             {{ else }}
               <img src="{{ $first.Params.cover }}" alt="{{ $alt }}"
                   fetchpriority="high"
                   decoding="async"
                   class="object-cover w-full h-auto rounded-none mb-4 aspect-[4/3]"
-                  width="{{ .Width }}" height="{{ .Height }}"
+            
                   />
             {{ end }}
           {{ end }}
@@ -100,10 +106,9 @@
         </div>
 
         <div class="mb-2">
-          <ion-icon name="time" class="mr-1 mt-2"></ion-icon>
-          {{ $readingTime := div (float .WordCount) .Site.Params.reading_speed }}
-          {{ $readingTime := math.Ceil $readingTime }}
-          <span>{{ $readingTime }} {{ T "minuteRead" }}</span>
+            <a href="{{ $first.RelPermalink }}" class="text-blue-500 hover:underline mt-2"></a>
+            {{ T "readMore" | default "Read More" }}
+            </a>
         </div>
       </div>
 
