@@ -5,90 +5,110 @@
 
 <a href="{{ $first.RelPermalink }}" class="block">
   <section class="latest-post w-full justify-center px-6 pt-6 pb-4 border-b transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
-    <div class="max-w-6xl w-full flex flex-col md:flex-row gap-2 md:gap-6 items-stretch">
+    <div class="w-full flex flex-col md:flex-row-reverse gap-2 md:gap-6 items-stretch">
 
-      <!-- Image Left -->
-      <div class="flex-shrink-0 w-full md:w-1/3 h-full">
-        {{ if $first.Params.cover }}
-          <figure>
-            {{ with $first.Resources.Get $first.Params.cover }}
-              {{ if eq .MediaType.SubType "svg" }}
-                <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                    fetchpriority="high"
-                    decoding="async"
-                    class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
-                    width="{{ .Width }}" height="{{ .Height }}"
-                    />
-              {{ else }}
-                {{ $webp := .Resize "744x webp" }}
-                <picture>
-                  <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
-                  <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                      fetchpriority="high"
-                      decoding="async"
-                      class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4" 
-                      width="{{ .Width }}" height="{{ .Height }}"
-                      />
-                </picture>
-              {{ end }}
-            {{ else }}
-              {{ with resources.Get $first.Params.cover }}
-                {{ $webp := .Resize "744x webp" }}
-                <picture>
-                  <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
-                  <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                      fetchpriority="high"
-                      decoding="async"
-                      class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
-                      width="{{ .Width }}" height="{{ .Height }}"
-                      />
-                </picture>
-              {{ else }}
-                <img src="{{ $first.Params.cover }}" alt="{{ $alt }}"
-                    fetchpriority="high"
-                    decoding="async"
-                    class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
-                    width="{{ .Width }}" height="{{ .Height }}"
-                    />
-              {{ end }}
-            {{ end }}
-          </figure>
-        {{ else }}
-          <figure>
-            {{ with resources.Get (printf "images/default%d.jpg" (index (seq 4 | shuffle) 0)) }}
-              {{ $webp := .Resize "744x webp" }}
-              <picture>
-                <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
-                <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
-                class="object-cover w-full h-auto rounded-none mb-4 md:max-h-1/4 sm:max-h-1/4"
-                    width="{{ .Width }}" height="{{ .Height }}"
-                    />
-              </picture>
-            {{ end }}
-          </figure>
-        {{ end }}
-      </div>
+      <!-- If cover exists -->
+      {{ if $first.Params.cover }}
 
-      <!-- Text Right -->
-      <div class="flex-1 pb-4">
-        <h2 class="text-sm uppercase text-gray-500 tracking-widest mb-2">
+      <!-- Text Right (with image) -->
+      <div class="latest-post-text flex-1 pb-4 flex flex-col gap-2 lg:gap-4">
+        <h2 class="text-sm uppercase text-gray-500 tracking-widest mt-1">
           {{ with $first.Params.categories }}{{ index . 0 }}{{ else }}{{ T "uncategorized" | default "Top" }}{{ end }}
         </h2>
 
-        <h3 class="text-3xl font-bold mb-2 font-serif hover:underline">
+        <h3 class="text-3xl font-bold font-serif hover:underline">
           {{ $first.Title }}
         </h3>
 
         <p class="text-sm text-gray-500">{{ $first.Date.Format "2006-01-02" }}</p>
 
-        <div class="mt-4">
+        <div class="">
           {{ $first.Summary }}
         </div>
 
-        <span class="hover:underline text-gray-500 inline-block">
-          {{ T "readMore" | default " >> read more" }}
-        </span>
+        <!-- read time -->
+        <div class="flex items-center mt-2">
+          <ion-icon name="time" class="mr-1"></ion-icon>
+          {{ $readingTime := div (float .WordCount) .Site.Params.reading_speed }}
+          {{ $readingTime := math.Ceil $readingTime }}
+          <span>{{ $readingTime }} {{ T "minuteRead" }}</span>
+        </div>
       </div>
+      <!-- Image Left -->
+      <div class="latest-post-cover flex-shrink-0 w-full md:w-1/3 h-full"> 
+        <figure>
+          {{ with $first.Resources.Get $first.Params.cover }}
+            {{ if eq .MediaType.SubType "svg" }}
+              <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                  fetchpriority="high"
+                  decoding="async"
+                  class="object-cover w-full h-auto rounded-none mb-4 aspect-[4/3]"
+                  width="{{ .Width }}" height="{{ .Height }}"
+                  />
+            {{ else }}
+              {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+              <picture>
+                <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+                <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                    fetchpriority="high"
+                    decoding="async"
+                    class="object-cover w-full h-auto rounded-none mb-4 aspect-[4/3]"
+                    width="{{ .Width }}" height="{{ .Height }}"
+                    />
+              </picture>
+            {{ end }}
+          {{ else }}
+            {{ with resources.Get $first.Params.cover }}
+              {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}
+              <picture>
+                <source srcset="{{ $webp.RelPermalink }}" type="image/webp" />
+                <img src="{{ .RelPermalink }}" alt="{{ $alt }}"
+                    fetchpriority="high"
+                    decoding="async"
+                    class="object-cover w-full h-auto rounded-none mb-4 aspect-[4/3]"
+                    width="{{ .Width }}" height="{{ .Height }}"
+                    />
+              </picture>
+            {{ else }}
+              <img src="{{ $first.Params.cover }}" alt="{{ $alt }}"
+                  fetchpriority="high"
+                  decoding="async"
+                  class="object-cover w-full h-auto rounded-none mb-4 aspect-[4/3]"
+                  width="{{ .Width }}" height="{{ .Height }}"
+                  />
+            {{ end }}
+          {{ end }}
+        </figure>
+    </div>
+
+      {{ else }}
+      <!-- Text Right (without image, improved styling) -->
+      <div class="latest-post-text flex-1 text-center flex flex-col gap-2 lg:gap-4 w-full justify-center">
+        <!-- Category -->
+        <h2 class="text-sm lg:text-md uppercase text-gray-500 tracking-widest">
+          {{ with $first.Params.categories }}{{ index . 0 }}{{ else }}{{ T "uncategorized" | default "Top" }}{{ end }}
+        </h2>
+        <!-- Post title -->
+        <h3 class="text-3xl md:text-5xl font-bold font-serif hover:underline">
+          {{ $first.Title }}
+        </h3>
+        <!-- Date -->
+        <p class="text-sm lg:text-md text-gray-500">{{ $first.Date.Format "2006-01-02" }}</p>
+        <!-- Summary -->
+        <div>
+          {{ $first.Summary }}
+        </div>
+
+        <div class="mb-2">
+          <ion-icon name="time" class="mr-1 mt-2"></ion-icon>
+          {{ $readingTime := div (float .WordCount) .Site.Params.reading_speed }}
+          {{ $readingTime := math.Ceil $readingTime }}
+          <span>{{ $readingTime }} {{ T "minuteRead" }}</span>
+        </div>
+      </div>
+
+      {{ end }}
+      
     </div>
   </section>
 </a>
