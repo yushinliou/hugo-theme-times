@@ -34,15 +34,15 @@ hugo server
 
 ## ✨ Features
 
-- 🎨 Light/Dark Mode with Tailwind's theming
+- 🔎 SEO optimize
 - 🌍 Multilingual support
+- 🖼️ Gallary view (Great for portfoilio!)
+- 🧾 RSS enabled
+- 🎨 Light/Dark Mode
 - 🧩 Built-in categories, tags, year archives pages
 - 🧠 Reading time estimation
 - 📚 Table of contents (TOC) in posts
-- 🖼️ Featured images in summaries (optional, but recommended for better visuals)
 - 🧵 DaisyUI & Tailwind Typography plugin ready (update to Tailwind v4)
-- 🧾 RSS enabled
-- 💡 Code syntax highlighting with Dracula theme
 
 ## ⚙️ Configuration Example
 
