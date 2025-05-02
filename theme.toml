@@ -7,11 +7,13 @@ homepage = 'https://github.com/yushinliou/hugo-theme-times'
 
 demosite = 'https://focusidler.com'
 
-tags = ['blog', 'news', 'journal', 'magazine', 'responsive', 'multilingual', 'tailwindcss', 'darkmode']
+tags = ['blog', 'news', 'journal', 'magazine', 'responsive', 'multilingual', 'tailwindcss', 'darkmode', "gallery", "portfolio"]
 features = [
   "Minimal & Modern Design",
   "Filter posts by categories and tags",
   "Dark/light theme switch",
+  "SEO friendly",
+  "RSS feed",
   "Timeline archive view",
   "Responsive",
   "Favicon",
