@@ -2255,6 +2255,11 @@
       border-color: var(--color-gray-600);
     }
   }
+  .dark\:border-white {
+    &:where(.dark, .dark *) {
+      border-color: var(--color-white);
+    }
+  }
   .dark\:border-t-transparent {
     &:where(.dark, .dark *) {
       border-top-color: transparent;
