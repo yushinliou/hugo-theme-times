@@ -21,11 +21,11 @@
 </div>
 {{ else }}
   {{ if eq $paginator.PageNumber 1 }}
-  <div class="dream-grid-header px-6 mt-6">
+  <div class="dream-grid-header px-6 mt-6 mb-6">
     <h2 class="text-left text-4xl font-bold font-playfair">{{ site.Params.contentTitle | default "Latest Posts."}}</h2>
   </div>
   {{ end }}
-  <div class="dream-grid opacity-0 mx-4 mt-4">
+  <div class="dream-grid opacity-0 mx-4 mt-4 mb-6">
   {{ range $paginator.Pages }}
     <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column gap-4">
       {{ .Render "summary" }}
