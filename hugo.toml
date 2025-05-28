@@ -1,4 +1,4 @@
-baseURL = "https://focusidler.com"
+baseURL = "https://hugo-demo-times.pages.dev"
 defaultContentLanguage = "zh"
 title = "A focused idler"
 theme = "times"

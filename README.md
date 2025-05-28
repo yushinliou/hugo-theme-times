@@ -8,8 +8,8 @@
 
 ## 🌐 Demo
 
-- Live Site: [https://focusidler.com](https://focusidler.com)
-- Responsive Preview: [https://ui.dev/amiresponsive?url=https://focusidler.com](https://ui.dev/amiresponsive?url=https://focusidler.com)
+- Live Site: [https://hugo-demo-times.pages.dev](https://hugo-demo-times.pages.dev)
+- Responsive Preview: [https://ui.dev/amiresponsive?url=https://hugo-demo-times.pages.dev](https://ui.dev/amiresponsive?url=https://hugo-demo-times.pages.dev)
 
 ## 📦 Installation
 
@@ -76,7 +76,7 @@ theme = "times"
   showSummaryCoverInPost = true
   showPrevNextPost = true
   headerTitle = "YOUR SITE TITLE" # this will show in header
-  headerAvatar = "avatar/avatar-512x512.png" # the profile image show in header, should place in /static
+  headerAvatar = "avatar/avatar-512X512.png" # the profile image show in header, should place in /static
 ```
 
 ---

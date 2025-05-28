@@ -5,7 +5,7 @@ description = 'A news paper style Hugo theme'
 
 homepage = 'https://github.com/yushinliou/hugo-theme-times'
 
-demosite = 'https://focusidler.com'
+demosite = 'https://hugo-demo-times.pages.dev'
 
 tags = ['blog', 'news', 'journal', 'magazine', 'responsive', 'multilingual', 'tailwindcss', 'darkmode', "gallery", "portfolio"]
 features = [
@@ -22,7 +22,6 @@ features = [
   "Disqus",
   "Utterances",
   "Syntax Highlighting",
-  "Decap CMS",
   "Customizable",
 ]
 
