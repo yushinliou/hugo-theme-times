@@ -11,6 +11,8 @@
 - Live Site: [https://hugo-demo-times.pages.dev](https://hugo-demo-times.pages.dev)
 - Responsive Preview: [https://ui.dev/amiresponsive?url=https://hugo-demo-times.pages.dev](https://ui.dev/amiresponsive?url=https://hugo-demo-times.pages.dev)
 
+![alt](https://github.com/yushinliou/hugo-theme-times/blob/main/static/image-responsive.png)
+
 ## 📦 Installation
 
 1. Add the theme to your Hugo site:
