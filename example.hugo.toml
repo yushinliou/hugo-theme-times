@@ -1,6 +1,6 @@
 baseURL = "https://focusidler.com"
 defaultContentLanguage = "zh"
-title = "A focused idler"
+title = "Kai Rowan"
 theme = "times"
 
 [markup]
@@ -34,11 +34,11 @@ theme = "times"
     weight = 2
 
 [languages.en.params]
-  description = "We don't need to be busy, we need to be focused"
+  description = "About me"
   reading_speed = 212
 
 [languages.zh.params]
-  description = "We don't need to be busy, we need to be focused."
+  description = "About me"
   reading_speed = 500
 
 [languages.zh.menu]
@@ -61,11 +61,11 @@ theme = "times"
 # ID = ""
 
 [params]
-  description = "專心摸魚"
-  author = "A Focused Idler"
+  headerTitle = "Kai Rowan, A designer"
+  author = "Kai Rowan" # default author name for posts
   mainSections = ["posts"]
   featuredPosts = 3
-  motto = "Don't be busy, be focus"
+  motto = "About me"
   footerBottomText = "CC BY-NC-SA 4.0"
   rss = true
   email = "focusidler@gmail.com"
@@ -75,7 +75,6 @@ theme = "times"
   showTableOfContents = true
   showSummaryCoverInPost = true
   headerAvatar = "avatar/avatar-512x512.png"
-  headerTitle = "A FOCUSED IDLER"
   showPrevNextPost = true
   # byText = "Author"
   # backgroundImage = "me/background.jpg"

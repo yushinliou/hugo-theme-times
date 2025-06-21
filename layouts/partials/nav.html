@@ -36,8 +36,8 @@
     
     <!-- motto -->
     {{ if site.Params.motto }}
-    <div class="text-sm font-semibold">
-      {{ site.Params.motto }}
+    <div class="text-sm font-semibold hover:underline">
+      <a href="{{ "/about/me" | relLangURL }}" class="hover:opacity-90 transition">{{ site.Params.motto }}</a>
     </div>
     {{ end }}
   </div>
